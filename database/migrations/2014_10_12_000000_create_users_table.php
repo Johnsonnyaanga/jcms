@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phonenumber')->unique();
             $table->integer('is_deleted')->default(0);
             $table->integer('is_active')->nullable();
-            $table->integer('group_id')->nullable();
+            $table->integer('groups_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

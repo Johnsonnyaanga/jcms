@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('agents.dashboard');
+    return view('admin.tables.users');
 });
 
 Auth::routes();

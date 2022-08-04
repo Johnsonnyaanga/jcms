@@ -15,7 +15,7 @@ class CreateTicketAttachmentsTable extends Migration
     {
         Schema::create('ticket_attachments', function (Blueprint $table) {
             $table->id();
-            $table->integer('thread_id');
+            $table->integer('threads_id');
             $table->string('filename');
             $table->string('content_size');
             $table->string('content_type');

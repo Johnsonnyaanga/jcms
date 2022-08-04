@@ -16,7 +16,7 @@ class CreateQueuesTable extends Migration
         Schema::create('queues', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('group_id');
+            $table->integer('groups_id');
             $table->integer('unlock_time_out');
             $table->integer('first_time_response');
             $table->integer('first_time_response_notify');
@@ -26,9 +26,9 @@ class CreateQueuesTable extends Migration
             $table->integer('solution_notify');
             $table->integer('system_adress_id');
             $table->string ('default_sign_key');
-            $table->integer('salutation_id');
-            $table->integer('signature_id');
-            $table->integer('follow_up_id');
+            $table->integer('salutation_id')->nullable();
+            $table->integer('signature_id')->nullable();
+            $table->integer('follow_up_id')->nullable();
             $table->integer('follow_up_lock');
             $table->string('comments');
             $table->integer('valid_id');

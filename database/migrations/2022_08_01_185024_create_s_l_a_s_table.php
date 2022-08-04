@@ -13,7 +13,7 @@ class CreateSLASTable extends Migration
      */
     public function up()
     {
-        Schema::create('s_l_a_s', function (Blueprint $table) {
+        Schema::create('slas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('grace_period');
@@ -32,6 +32,6 @@ class CreateSLASTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_l_a_s');
+        Schema::dropIfExists('slas');
     }
 }
