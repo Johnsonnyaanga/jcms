@@ -13,7 +13,7 @@
           <img src="{{asset('assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">David Njeru</a>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="nav-icon fas far fa-tachometer-alt"></i>
                   <p>Dashboard</p>
                 </a>
@@ -46,7 +46,7 @@
           <li class="nav-item menu-open">
 
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-users"></i>
+              {{-- <i class="nav-icon fas fa-users"></i> --}}
               <p>
                 User management
                 <i class="right fas fa-angle-left"></i>
@@ -55,25 +55,19 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
+                <a href="\roles\show" class="nav-link">
+                  {{-- <i class="nav-icon fas fa-users"></i> --}}
+                  <i class="nav-icon fas fa-bars"></i>
                   <p>Roles</p>
                 </a>
               </li>
             </ul>
 
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
-                    <p>Permissions</p>
-                  </a>
-                </li>
-              </ul>
+
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
                     <p>Queues</p>
                   </a>
@@ -82,7 +76,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
                     <p>Groups</p>
                   </a>
@@ -98,7 +92,7 @@
           <li class="nav-item menu-open">
 
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-users"></i>
+              {{-- <i class="nav-icon fas fa-users"></i> --}}
               <p>
                 Manage
                 <i class="right fas fa-angle-left"></i>
@@ -107,17 +101,17 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>SLA</p>
+                <a href="\sla\show" class="nav-link">
+                    <i class="nav-icon fas fa-bars"></i>
+                 <p>SLA</p>
                 </a>
               </li>
             </ul>
 
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
+                  <a href="\types\show" class="nav-link">
+                    <i class="nav-icon fas fa-bars"></i>
                     <p>Ticket Types</p>
                   </a>
                 </li>
@@ -125,8 +119,8 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
+                  <a href="\services\show" class="nav-link">
+                    <i class="nav-icon fas fa-bars"></i>
                     <p>Ticket Services</p>
                   </a>
                 </li>
@@ -134,8 +128,8 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
+                  <a href="\priority\show" class="nav-link">
+                    <i class="nav-icon fas fa-bars"></i>
                     <p>
                         Priority
                     </p>
@@ -145,8 +139,8 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
+                  <a href="\status\show" class="nav-link">
+                    <i class="nav-icon fas fa-bars"></i>
                     <p>
                         Status
                     </p>
@@ -167,7 +161,7 @@
           <li class="nav-header">Settings</li>
           <li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
+                <i class="fa-thin fa-gear"></i>
               <p>
                 System Logs
                 <span class="badge badge-info right">2</span>
