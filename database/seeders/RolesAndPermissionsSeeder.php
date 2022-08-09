@@ -31,6 +31,8 @@ class RolesAndPermissionsSeeder extends Seeder
         // this can be done as separate statements
         $adminRole = Role::create(['name' => 'admin']);
         $agentRole = Role::create(['name' => 'agent']);
+        $liasonPersonRole = Role::create(['name' => 'liasonperson']);
+        $clientRole = Role::create(['name' => 'client']);
         $superAdminRole = Role::create(['name' => 'super-admin']);
 
 
@@ -50,7 +52,14 @@ class RolesAndPermissionsSeeder extends Seeder
 
             $clientUser =  User::create([
                 'username' => 'client',
-                'email' => 'johnsonyaanga@gmail.com',
+                'email' => 'client@gmail.com',
+                'phonenumber' => 0733333333,
+               'password' => Hash::make('11111111'),
+            ]);
+
+            $liasonPersonUser =  User::create([
+                'username' => 'liasonperson',
+                'email' => 'liason@gmail.com',
                 'phonenumber' => 0733333333,
                'password' => Hash::make('11111111'),
             ]);
@@ -72,11 +81,34 @@ class RolesAndPermissionsSeeder extends Seeder
                 $Permission4
             ]);
 
-            $adminUser -> syncPermissions([
+            $adminUser -> syncRoles([
+                $adminRole
+            ]);
+
+            $agentUser -> syncRoles([
+                $agentRole
+            ]);
+
+            $liasonPersonUser -> syncRoles([
+                $liasonPersonRole
+            ]);
+
+            $clientUser -> syncRoles([
+                $clientRole
+            ]);
+
+            $superAdminUser ->syncRole([
+                $superAdminRole
+            ]);
+
+
+
+            $adminUser -> syncPermissions(
                 $Permission1,
                 $Permission2,
                 $Permission3
-            ]);
+            );
+
 
             $agentUser -> syncPermissions([
                 $Permission1,
