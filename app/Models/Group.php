@@ -13,4 +13,9 @@ class Group extends Model
         'name',
         'comments'
     ];
+
+
+    public function queues(){
+        return $this->hasMany(Queue::class);
+    }
 }

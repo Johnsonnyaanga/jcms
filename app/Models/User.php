@@ -20,6 +20,15 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function queues(){
+        return $this->belongsTo(Queue::class,'queues_id');
+    }
+
     protected $fillable = [
         'firstname',
         'lastname',

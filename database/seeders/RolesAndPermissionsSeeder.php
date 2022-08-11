@@ -37,6 +37,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
 
         $adminUser =  User::create([
+                'firstname' => 'Admin',
+                'lastname' => 'User',
                 'username' => 'admin',
                 'email' => 'admin@gmail.com',
                 'phonenumber' => 0711111111,
@@ -44,6 +46,8 @@ class RolesAndPermissionsSeeder extends Seeder
             ]);
 
             $agentUser =  User::create([
+                'firstname' => 'Agent',
+                'lastname' => 'User',
                 'username' => 'agent',
                 'email' => 'agent@gmail.com',
                 'phonenumber' => 0722222222,
@@ -51,21 +55,27 @@ class RolesAndPermissionsSeeder extends Seeder
             ]);
 
             $clientUser =  User::create([
+                'firstname' => 'Client',
+                'lastname' => 'User',
                 'username' => 'client',
                 'email' => 'client@gmail.com',
-                'phonenumber' => 0733333333,
+                'phonenumber' => 0755555555,
                'password' => Hash::make('11111111'),
             ]);
 
             $liasonPersonUser =  User::create([
+                'firstname' => 'LiaisonPerson',
+                'lastname' => 'User',
                 'username' => 'liasonperson',
                 'email' => 'liason@gmail.com',
-                'phonenumber' => 0733333333,
+                'phonenumber' => 0766666666,
                'password' => Hash::make('11111111'),
             ]);
 
 
             $superAdminUser =  User::create([
+                'firstname' => 'SuperAdmin',
+                'lastname' => 'User',
                 'username' => 'superAdmin',
                 'email' => 'superAdmin@gmail.com',
                 'phonenumber' => 0744444444,
@@ -97,7 +107,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 $clientRole
             ]);
 
-            $superAdminUser ->syncRole([
+            $superAdminUser ->syncRoles([
                 $superAdminRole
             ]);
 

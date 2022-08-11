@@ -14,8 +14,8 @@ class UsersTableForeignKeys extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('groups_id')->change();
-            $table->foreign('groups_id')->references('id')->on('groups');
+            $table->unsignedBigInteger('queues_id')->change();
+            $table->foreign('queues_id')->references('id')->on('queues');
         });
     }
 
@@ -27,7 +27,7 @@ class UsersTableForeignKeys extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_groups_id_foreign');
+            $table->dropForeign('users_queues_id_foreign');
         });
     }
 }

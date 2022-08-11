@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AgentsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GroupsController;
+use App\Http\Controllers\Admin\QueuesController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Agent\DashboardController as AgentDashboardController;
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +26,49 @@ Route::group(['middleware' => ['auth']], function(){
     //admin routes
     Route::group(['middleware' => ['role:admin']], function () {
 
+        //create save a new  agent
+        Route::post('/admin/agents', [AgentsController::class, 'store'])->name('register-agent');
+        //list all agents pages
+        Route::get('/admin/agents', [AgentsController::class, 'agents'])->name('list-agents');
+        //open the create-agent page
+        Route::get('/admin/agents/create', [AgentsController::class, 'create'])->name('create-agent');
+
+
+
+
+        //roles routes
+        Route::get('/admin/roles', [RolesController::class, 'index'])->name('list-roles');
+        Route::post('/admin/roles', [RolesController::class, 'store'])->name('create-role');
+        Route::put('/admin/roles', [RolesController::class, 'update'])->name('update-role');
+
+
+        //queues routes
+        Route::get('/admin/queues', [QueuesController::class, 'index'])->name('list-queues');
+
+
+
+        //groups routes
+        Route::get('/admin/groups', [GroupsController::class, 'index'])->name('list-groups');
+
+
+
+
+
+
+        Route::get('/roles/edit', function () {
+            return view('admin.roles.create');
+        });
+
+
+
+
+
+
+
+
+
+
+
         Route::get('/admin_dashboard', [DashboardController::class, 'index']);
         //
         Route::get('/admin/dashboard',function(){
@@ -33,25 +81,14 @@ Route::group(['middleware' => ['auth']], function(){
             return view('admin.users.show');
         });
 
-        Route::get('/users/edit', function () {
-            return view('admin.users.edit');
-        });
+
+        Route::get('/admin/agents', [AgentsController::class, 'agents'])->name('list-agents');
+
 
         Route::get('/users/create', function () {
             return view('admin.users.create');
         });
 
-        Route::get('/roles/create', function () {
-            return view('admin.roles.create');
-        });
-
-        Route::get('/roles/edit', function () {
-            return view('admin.roles.create');
-        });
-
-        Route::get('/roles/show', function () {
-            return view('admin.roles.show');
-        });
 
         Route::get('/sla/show', function () {
             return view('admin.slas.show');
@@ -98,7 +135,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 
     Route::group(['middleware' => ['role:agent']], function () {
-        
+
         Route::get('/agent_dashboard', [AgentDashboardController::class, 'index']);
         Route::get('/agent/dashboard',function(){
         return view('agents.dashboard');

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Queue extends Model
 {
     use HasFactory;
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class,'groups_id');
+    }
 }

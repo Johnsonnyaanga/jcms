@@ -53,9 +53,22 @@
               </p>
             </a>
 
+
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('list-agents')}}" class="nav-link">
+                    {{-- <i class="nav-icon fas fa-users"></i> --}}
+                    <i class="nav-icon fas fa-bars"></i>
+                    <p>Agents</p>
+                  </a>
+                </li>
+              </ul>
+
+
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="\roles\show" class="nav-link">
+                <a href="{{route('list-roles')}}" class="nav-link">
                   {{-- <i class="nav-icon fas fa-users"></i> --}}
                   <i class="nav-icon fas fa-bars"></i>
                   <p>Roles</p>
@@ -67,7 +80,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('list-queues')}}" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
                     <p>Queues</p>
                   </a>
@@ -76,7 +89,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('list-groups')}}" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
                     <p>Groups</p>
                   </a>
