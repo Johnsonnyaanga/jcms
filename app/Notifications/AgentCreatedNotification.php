@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notification;
 class AgentCreatedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+    private array $agentData;
 
 
     /**
@@ -17,8 +18,9 @@ class AgentCreatedNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(array $agentData)
     {
+        $this->agentData = $agentData;
 
     }
 
@@ -41,11 +43,13 @@ class AgentCreatedNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+        $data = $this->agentData;
+
         return (new MailMessage)
-        ->greeting('Hello!')
-        ->line('One of your invoices has been paid!')
-        ->action('View Invoice', "")
-        ->line('Thank you for using our application!');
+        ->greeting('Hello')
+        ->line($data['body'])
+        ->action('Reset Password',$data['url'])
+        ->line($data['thankyou']);
     }
 
     /**

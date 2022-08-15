@@ -18,7 +18,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
+          <h1 class="m-0">SLA Plans</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -33,19 +33,46 @@
 @section('content')
 
 <div class="container-fluid">
+    @if(Session::has('success'))
+    <div class="alert alert-success alert-dismissable">
+        <i class="fas  fa-check-circle"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{Session::get('success')}}
+    </div>
+    @endif
+    <!-- failure message -->
+    @if(Session::has('fails'))
+    <div class="alert alert-danger alert-dismissable">
+        <i class="fas fa-ban"></i>
+        <b>{!! Lang::get('lang.fails') !!}!</b>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{Session::get('fails')}}
+    </div>
+    @endif
 
     <div class="row">
       <div class="col-12">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">SLA plans</h3>
+            <div class="card-tools">
+                <a href="{{route('create-sla')}}">
+                <button type="button" class="btn btn-primary" >
+                    <i class="fas fa-plus"></i>
+
+                    Create SLA
+
+                </button>
+                 </a>
+
+            </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <table id="example2" class="table table-bordered table-hover">
               <thead>
               <tr>
-                <th>SLA name</th>
+                <th>SLA</th>
                 <th>Status</th>
                 <th>Period</th>
                 <th>Created at</th>
@@ -54,38 +81,35 @@
               </tr>
               </thead>
               <tbody>
+
+              @if ($ticketSla != null)
+              @foreach ($ticketSla as $ticketSla)
               <tr>
-                <td>SLA 1</td>
-                <td>Active</td>
-                <td>6 hours</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>03/06/2022 03:52:54</td>
+                <td>{{$ticketSla->name}}</td>
                 <td>
+                    @if ($ticketSla->valid_id == 1)
+                    Active
+                    @else
+                    Inactive
+                    @endif
+
+                </td>
+                <td>{{$ticketSla->grace_period.' Hours'}}</td>
+                <td>{{$ticketSla->created_at}}</td>
+                <td>{{$ticketSla->updated_at}}</td>
+                <td>
+                    <a href="{{route('edit-sla',$ticketSla->id)}}">
                     <button class="btn btn-primary">Edit</button>
+                    </a>
                 </td>
               </tr>
+              @endforeach
+
+              @endif
 
 
-              <tr>
-                <td>SLA 2</td>
-                <td>Active</td>
-                <td>24 hours</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
-              <tr>
-                <td>SLA 3</td>
-                <td>InActive</td>
-                <td>12 hours</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
+
+
               </tbody>
               <tfoot>
 

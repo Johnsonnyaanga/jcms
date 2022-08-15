@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Error;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
@@ -26,7 +28,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('admin.roles.create');
+        $permissions = Permission::all();
+        return view('admin.roles.create',compact('permissions'));
     }
 
     /**
@@ -37,7 +40,26 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:255','unique:roles']
+            ]);
+
+
+            $role = Role::create([
+                'name' => $request['name']
+            ]);
+
+            $permissions = $request['permissions'];
+
+            $role->syncPermissions($permissions);
+            $role->save();
+
+            return redirect()->route('list-roles')->with('success', 'Role created succesifully');
+        }
+            catch(Error $error){
+                return redirect()->route('list-roles')->with('fail', $error);
+            }
     }
 
     /**
@@ -59,7 +81,11 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        $permissions = Permission::all();
+
+
+        return view('admin.roles.edit',compact('role','permissions'));
     }
 
     /**
@@ -71,7 +97,26 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return view('admin.roles.edit');
+
+        try{
+            // $validated = $request->validate([
+            //     'name' => ['required', 'string', 'max:255']
+            // ]);
+
+
+            $role = Role::find($id);
+            $role->name = $request['name'];
+            $permissions = $request['permissions'];
+
+            $role->syncPermissions($permissions);
+            $role->save();
+
+            return redirect()->route('list-roles')->with('success', 'Role updated succesifully');
+        }
+            catch(Error $error){
+                return redirect()->route('list-roles')->with('fail', $error);
+            }
+
     }
 
     /**

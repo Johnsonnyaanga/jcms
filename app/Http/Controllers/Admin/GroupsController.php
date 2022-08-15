@@ -59,7 +59,9 @@ class GroupsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $group = Group::find($id);
+        
+        return view('admin.groups.edit',compact('group'));
     }
 
     /**

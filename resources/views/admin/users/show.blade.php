@@ -18,7 +18,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
+          <h1 class="m-0">Agents</h1>
 
 
           {{-- @foreach ($agents as $agents )
@@ -70,7 +70,7 @@
                     Create Agent
 
                 </button>
-            </a>
+                 </a>
 
             </div>
           </div>
@@ -98,13 +98,22 @@
             <td>{{$agent->firstname}} {{$agent->lastname}}</td>
             <td>{{$agent->username}}</td>
             <td>{{$agent->roles->pluck('name')[0]}}</td>
-            <td>Active</td>
+            <td>
+                @if ($agent->is_active == 1)
+                Active
+                @else
+                Inactive
+                @endif
+
+            </td>
             <td>{{$agent->queues->name}}</td>
             <td>{{$agent->created_at}}</td>
             <td>
-                <button class="btn btn-primary">
-                    Edit
-                </button>
+                <a href="{{route('edit-agent', $agent->id )}}">
+                    <button class="btn btn-primary">
+                        Edit
+                    </button>
+                    </a>
             </td>
           </tr>
           @else
@@ -116,9 +125,11 @@
             <td>None</td>
             <td>03/06/2022 03:52:54</td>
             <td>
+                <a href="{{route('edit-agent', $agent->id )}}">
                 <button class="btn btn-primary">
                     Edit
                 </button>
+                </a>
             </td>
           </tr>
           @endisset

@@ -51,7 +51,7 @@
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Create Role</h3>
+                    <h3 class="card-title">Edit Role</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -64,6 +64,8 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                <form method="POST" action="{{ route('update-role',$role->id) }}">
+                 @csrf
 
                     <div class="row">
 
@@ -72,7 +74,7 @@
                             <div class="form-group">
                                 {{-- first-name --}}
                                 <label>Role name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" value="{{$role->name}}" type="text"  name="name" placeholder="">
                             </div>
                             <!-- /.form-group -->
 
@@ -80,16 +82,7 @@
                         <!-- /.col -->
 
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label> Role Status</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Inactive</option>
-                                  <option>Active</option>
-                                </select>
-                            </div>
-                            <!-- /.form-group -->
-                        </div>
+
 
 
                         <!-- /.col -->
@@ -104,21 +97,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Assign Permissions</label>
-                                <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                                  <option>create-ticket</option>
-                                  <option>edit-ticket</option>
-                                  <option>delete-ticket</option>
-                                  <option>create-ticket</option>
-                                  <option>create-ticket</option>
-                                  <option>create-ticket</option>
-                                  <option>create-ticket</option>
-                                  <option>create-ticket</option>
-                                  <option>edit-ticket</option>
-                                  <option>delete-ticket</option>
-                                  <option>create-ticket</option>
-                                  <option>create-ticket</option>
-                                  <option>create-ticket</option>
-                                  <option>create-ticket</option>
+                                <select class="select2" multiple="multiple" data-placeholder="Select a State" name="permissions[]" id="permissions" style="width: 100%;">
+
+                                    @if ($permissions != null)
+                                    @foreach ($permissions as $permission )
+                                    <option value="{{$permission->id}}" {{in_array($permission->id, $role->permissions->pluck('id')->toArray() ) ? 'selected' : ''}}>{{$permission->name}}</option>
+                                    @endforeach
+                                    @endif
+
                                 </select>
                               </div>
 
@@ -128,15 +114,15 @@
 
                     </div>
 
+                    <Button class="btn btn-primary" type="submit">
+                        Update
+                    </Button>
 
-
-
+                </form>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <Button class="btn btn-primary">
-                        Save
-                    </Button>
+
                 </div>
             </div>
             <!-- /.card -->

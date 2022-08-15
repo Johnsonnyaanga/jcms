@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\Group;
-use App\Models\Queue;
-use Error;
 use Illuminate\Http\Request;
 
-class QueuesController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $queues = Queue::all();
-        return view('admin.queues.show',compact('queues'));
-    }
+
+    public function __construct() {
+        $this->middleware('auth');
+      }
+      public function index() {
+        return view('home');
+      }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +28,7 @@ class QueuesController extends Controller
      */
     public function create()
     {
-        return view('admin.queues.create');
+        //
     }
 
     /**
@@ -61,9 +61,7 @@ class QueuesController extends Controller
      */
     public function edit($id)
     {
-       $queue = Queue::find($id);
-       $groups = Group::all();
-       return view('admin.queues.edit',compact('queue','groups'));
+        //
     }
 
     /**
@@ -75,31 +73,7 @@ class QueuesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
-            $validated = $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'group' => ['required'],
-                'valid_id' => ['required']
-            ]);
-
-
-            $queue = Queue::find($id);
-
-            $queue->name = $request['name'];
-            $queue->groups_id = $request['group'];
-            $queue->valid_id = $request['valid_id'];
-
-
-
-
-
-            $queue->save();
-
-            return redirect()->route('list-queues')->with('success', 'Queue updated succesifully');
-        }
-            catch(Error $error){
-                return redirect()->route('list-queues')->with('fail', $error);
-            }
+        //
     }
 
     /**

@@ -25,9 +25,19 @@ class RedirectIfAuthenticated
                 if(Auth::user()->hasRole('admin')){
                     return '/admin_dashboard';
                    }
+
                    elseif(Auth::user()->hasRole('agent')){
                     return '/agent_dashboard';
                    }
+
+                   elseif(Auth::user()->hasRole(3)){
+                    return '/liasonperson_dashboard';
+                   }
+
+                   elseif(Auth::user()->hasRole(4)){
+                    return '/client_dashboard';
+                   }
+                   
                    else{
                     return '/home';
                    }

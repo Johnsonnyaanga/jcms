@@ -48,6 +48,19 @@
     @section('content')
         <div class="container-fluid">
 
+            @if ($errors->any())
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert"  >
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+              </div>
+
+
+        @endif
+
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
@@ -65,14 +78,15 @@
                 <!-- /.card-header -->
                 <div class="card-body">
 
-                    <div class="row">
+                    <form method="POST" action="{{ route('update-agent',$agent->id) }}">
+                        @csrf
 
-
+                        <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 {{-- first-name --}}
                                 <label>First name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="firstname" id="firstname" value="{{$agent->firstname}}" required>
                             </div>
                             <!-- /.form-group -->
 
@@ -84,7 +98,7 @@
                             <div class="form-group">
                                 {{-- first-name --}}
                                 <label>Last name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="lastname" id="lastname" value="{{$agent->lastname}}" required>
                             </div>
 
 
@@ -98,12 +112,12 @@
                             <div class="form-group">
                                 {{-- first-name --}}
                                 <label>Username</label>
-                                <input class="form-control" type="email" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="username" id="username" value="{{$agent->username}}" required>
                             </div>
                         </div>
                         <!-- /.col -->
 
-                    </div>
+                         </div>
                     <!-- /.row -->
 
 
@@ -114,7 +128,7 @@
                             <div class="form-group">
                                 {{-- first-name --}}
                                 <label>Email</label>
-                                <input class="form-control" type="email" placeholder="">
+                                <input class="form-control" type="email" placeholder="" name="email" value="{{$agent->email}}" id="email" required>
                             </div>
                             <!-- /.form-group -->
 
@@ -126,7 +140,7 @@
                             <div class="form-group">
                                 {{-- first-name --}}
                                 <label>Phone number</label>
-                                <input class="form-control" type="number" placeholder="">
+                                <input class="form-control" type="number" placeholder="" name="phonenumber" value="{{$agent->phonenumber}}" id="phonenumber" required>
                             </div>
 
 
@@ -134,23 +148,27 @@
                         </div>
                         <!-- /.col -->
 
-
                         <div class="col-md-4">
-
                             <div class="form-group">
-                                <label>Assign Group</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Magistrate Court</option>
-                                  <option>Alaska</option>
-                                  <option>California</option>
-                                  <option>Delaware</option>
-                                  <option>Tennessee</option>
-                                  <option>Texas</option>
-                                  <option>Washington</option>
+                                <label>Assign Queue</label>
+                                <select class="form-control select2" style="width: 100%;" name="queue" id="queue" required>
+                                    @if ($queues != null)
+
+                                    @foreach ($queues as $queue)
+
+                                    <option value="{{$queue->id}}" {{$agent->queues->id == $queue->id  ? 'selected' : ''}} >{{$queue->name}}</option>
+
+                                    @endforeach
+                                    @else
+
+                                    @endif
+
                                 </select>
                             </div>
                         </div>
-                        <!-- /.col -->
+
+
+
 
                     </div>
                     <!-- /.row -->
@@ -162,9 +180,11 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Status</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Inactive</option>
-                                  <option>Active</option>
+                                <select class="form-control select2" style="width: 100%;" name="is_active" required>
+
+                                  <option  value="0" {{$agent->is_active == 0  ? 'selected' : ''}}>Inactive</option>
+                                  <option value="1" {{$agent->is_active == 1  ? 'selected' : ''}}>Active</option>
+
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -175,58 +195,36 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Assign Role</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Admin</option>
-                                  <option>Alaska</option>
-                                  <option>California</option>
-                                  <option>Delaware</option>
-                                  <option>Tennessee</option>
-                                  <option>Texas</option>
-                                  <option>Washington</option>
+                                <select class="form-control select2" style="width: 100%;" name="role" id="role" required>
+
+                                    @if ($roles != null)
+                                    @foreach ($roles as $roles)
+                                    <option value="{{$roles->id}}" {{$agent->roles->first()->id == $roles['id']  ? 'selected' : ''}}>{{$roles->name}}</option>
+                                    @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
                         <!-- /.col -->
 
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Assign Queue</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Milimani Criminal</option>
-                                  <option>Alaska</option>
-                                  <option>California</option>
-                                  <option>Delaware</option>
-                                  <option>Tennessee</option>
-                                  <option>Texas</option>
-                                  <option>Washington</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Assign Team</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Milimani Criminal</option>
-                                  <option>Court Team</option>
-                                  <option>Administrative Team</option>
 
-                                </select>
-                            </div>
-                        </div>
+                        <!-- /.col -->
+
 
                     </div>
                     <!-- /.row -->
 
+                    <button type="submit" class="btn btn-primary">
+                        Update
+                    </button>
 
+                    </form>
 
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <Button class="btn btn-primary">
-                        Update
-                    </Button>
+
                 </div>
             </div>
             <!-- /.card -->

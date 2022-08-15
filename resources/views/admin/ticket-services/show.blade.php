@@ -18,7 +18,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
+          <h1 class="m-0">Services</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -48,50 +48,38 @@
                 <th>Service name</th>
                 <th>Status</th>
                 <th>Type</th>
-                <th>Priority</th>
                 <th>Created at</th>
-                <th>Updated at</th>
                 <th>Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Court Service</td>
-                <td>Active</td>
-                <td>Public</td>
-                <td>Medium</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
+
+                @if ($services != null)
+                @foreach ($services as $service)
+                <tr>
+                    <td>{{$service->name}}</td>
+                    <td>
+                        @if ($service->valid_id == 1)
+                           Active
+                        @else
+                           Inactive
+                        @endif
+                    </td>
+                    <td>{{$service->ticketType->name}}</td>
+                    <td>{{$service->created_at}}</td>
+
+                    <td>
+                        <button class="btn btn-primary">Edit</button>
+                    </td>
+                  </tr>
+                @endforeach
+                @endif
 
 
-              <tr>
-                <td>Court Service</td>
-                <td>Active</td>
-                <td>Public</td>
-                <td>Medium</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
 
-              <tr>
-                <td>Court Service</td>
-                <td>Active</td>
-                <td>Public</td>
-                <td>Medium</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
-              
+
+
+
               </tbody>
               <tfoot>
 

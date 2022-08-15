@@ -18,7 +18,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
+          <h1 class="m-0">User Roles</h1>
 
         </div><!-- /.col -->
         <div class="col-sm-6">
@@ -34,20 +34,47 @@
 @section('content')
 
 <div class="container-fluid">
+    @if(Session::has('success'))
+            <div class="alert alert-success alert-dismissable">
+                <i class="fas  fa-check-circle"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{Session::get('success')}}
+            </div>
+            @endif
+            <!-- failure message -->
+            @if(Session::has('fails'))
+            <div class="alert alert-danger alert-dismissable">
+                <i class="fas fa-ban"></i>
+                <b>{!! Lang::get('lang.fails') !!}!</b>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{Session::get('fails')}}
+            </div>
+            @endif
 
     <div class="row">
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">User roles</h3>
+            <h3 class="card-title">Create User</h3>
+            <div class="card-tools">
+                <a href="{{route('create-role')}}">
+                <button type="button" class="btn btn-primary" >
+                    <i class="fas fa-plus"></i>
+
+                    Create Role
+
+                </button>
+                 </a>
+
+            </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <table id="example2" class="table table-bordered table-hover">
               <thead>
               <tr>
+                <th>SN</th>
                 <th>Role name</th>
-                <th>Status</th>
                 <th>Actions</th>
               </tr>
               </thead>
@@ -59,11 +86,15 @@
 
             @foreach ($roles as $role)
             <tr>
+            <td>{{$role->id}}</td>
             <td>{{$role->name}}</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
+            <td>
+            <a href="{{route('edit-role', $role->id )}}">
+                <button class="btn btn-primary">
+                    Edit
+                </button>
+                </a>
+            </td>
               </tr>
 
             @endforeach

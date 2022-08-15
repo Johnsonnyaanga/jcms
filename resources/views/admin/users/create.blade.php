@@ -57,9 +57,7 @@
                     @endforeach
                 </ul>
               </div>
-
-
-        @endif
+             @endif
 
 
             <!-- SELECT2 EXAMPLE -->
@@ -86,7 +84,9 @@
                     <form method="POST" action="{{ route('register-agent') }}">
                         @csrf
 
-                    <div class="row">
+
+
+                        <div class="row">
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -123,7 +123,7 @@
                         </div>
                         <!-- /.col -->
 
-                    </div>
+                         </div>
                     <!-- /.row -->
 
 
@@ -181,9 +181,11 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Status</label>
-                                <select class="form-control select2" style="width: 100%;" required>
-                                  <option selected="selected" value="0" >Inactive</option>
+                                <select class="form-control select2" style="width: 100%;" name="is_active" id="is_active" required>
+
+                                  <option  value="0" >Inactive</option>
                                   <option value="1">Active</option>
+
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -195,7 +197,7 @@
                             <div class="form-group">
                                 <label>Assign Role</label>
                                 <select class="form-control select2" style="width: 100%;" name="role" id="role" required>
-                                    
+
                                     @if ($roles != null)
                                     @foreach ($roles as $roles)
                                     <option value="{{$roles->id}}">{{$roles->name}}</option>

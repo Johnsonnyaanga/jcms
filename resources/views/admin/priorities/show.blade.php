@@ -18,7 +18,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
+          <h1 class="m-0">Priorities</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -46,7 +46,6 @@
               <thead>
               <tr>
                 <th>Priority</th>
-                <th>Priority description</th>
                 <th>Status</th>
                 <th>Created at</th>
                 <th>Updated at</th>
@@ -54,37 +53,32 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>High</td>
-                <td>high</td>
-                <td>Active</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>03/06/2022 03:52:54</td>
+
+            @if ($ticketPriorities != null)
+            @foreach ($ticketPriorities as $ticketPriority)
+            <tr>
+                <td>{{$ticketPriority->name}}</td>
+                <td>
+                    @if ($ticketPriority->valid_id == 1)
+                    Active
+                    @else
+                    Inactive
+                    @endif
+
+                </td>
+                <td>{{$ticketPriority->created_at}}</td>
+                <td>{{$ticketPriority->updated_at}}</td>
                 <td>
                     <button class="btn btn-primary">Edit</button>
                 </td>
               </tr>
+            @endforeach
+
+            @endif
 
 
-              <tr>
-                <td>Emergency</td>
-                <td>high</td>
-                <td>Active</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>03/06/2022 03:52:54</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-                <tr>
-                    <td>Low</td>
-                    <td>low</td>
-                    <td>Active</td>
-                    <td>03/06/2022 03:52:54</td>
-                    <td>03/06/2022 03:52:54</td>
-                    <td>
-                        <button class="btn btn-primary">Edit</button>
-                    </td>
-                  </tr>
+
+
               </tbody>
               <tfoot>
 

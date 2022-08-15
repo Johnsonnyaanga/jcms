@@ -16,6 +16,6 @@ class Group extends Model
 
 
     public function queues(){
-        return $this->hasMany(Queue::class);
+        return $this->hasMany(Queue::class,'groups_id', 'id');
     }
 }

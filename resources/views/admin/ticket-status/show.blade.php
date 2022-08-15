@@ -18,7 +18,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
+          <h1 class="m-0">Ticket Statuses</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -45,43 +45,35 @@
             <table id="example2" class="table table-bordered table-hover">
               <thead>
               <tr>
+                <th>No.</th>
                 <th>Name</th>
-                <th>Display number</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>New</td>
-                <td>1</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
 
-              <tr>
-                <td>Open</td>
-                <td>2</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
+                @if ($ticketStatuses != null)
+                @foreach ($ticketStatuses as $status )
+                <tr>
+                    <td>{{$status->id}}</td>
+                    <td>{{$status->name}}</td>
+                    <td>
+                        @if ($status->valid_id == 1)
+                         Active
+                         @else
+                         Inactive
+                        @endif
+                    </td>
+                    <td>
+                        <button class="btn btn-primary">Edit</button>
+                    </td>
+                  </tr>
+                @endforeach
 
-              <tr>
-                <td>Resolved</td>
-                <td>3</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
+                @endif
 
-              <tr>
-                <td>Closed</td>
-                <td>4</td>
-                <td>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-              </tr>
+
 
 
 

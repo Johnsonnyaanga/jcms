@@ -17,10 +17,10 @@ class CreateSLASTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('grace_period');
-            $table->string('admin_note');
+            $table->string('admin_note')->nullable();
             $table->integer('valid_id');
-            $table->integer('transient');
-            $table->integer('overdue');
+            $table->integer('transient')->nullable();
+            $table->integer('overdue')->nullable();
             $table->timestamps();
         });
     }

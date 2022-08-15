@@ -32,7 +32,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+                    <h1 class="m-0">SLA</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -47,11 +47,23 @@
 
     @section('content')
         <div class="container-fluid">
+            @if ($errors->any())
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert"  >
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+              </div>
+             @endif
+
+
 
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Create SLA</h3>
+                    <h3 class="card-title">Update SLA</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -64,6 +76,8 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    <form method="POST" action="{{route('update-sla',$sla->id)}}">
+                        @csrf
 
                     <div class="row">
 
@@ -72,7 +86,7 @@
                             <div class="form-group">
                                 {{-- first-name --}}
                                 <label>SLA name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" value="{{$sla->name}}" type="text" placeholder="" name="name" id="name" required>
                             </div>
                             <!-- /.form-group -->
 
@@ -82,12 +96,12 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Grace period</label>
-                                <select class="form-control select2" style="width: 100%;">
+                                <select class="form-control select2" style="width: 100%;" name="grace_period" id="grace_period">
                                   <option selected="selected">6 Hours</option>
-                                  <option>6 Hours</option>
-                                  <option>12 Hours</option>
-                                  <option>24 Hours</option>
-                                  <option>48 Hours</option>
+                                  <option value="6"  {{$sla->grace_period == '6' ? 'selected' : ''}}>6 Hours</option>
+                                  <option value="12" {{$sla->grace_period == '12' ? 'selected' : ''}}>12 Hours</option>
+                                  <option value="24" {{$sla->grace_period == '24' ? 'selected' : ''}}>24 Hours</option>
+                                  <option value="48" {{$sla->grace_period == '48' ? 'selected' : ''}}>48 Hours</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -98,9 +112,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label> SLA Status</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Inactive</option>
-                                  <option>Active</option>
+                                <select class="form-control select2" style="width: 100%;" name="valid_id" id="valid_id">
+                                  <option value="0" {{$sla->valid_id == 0 ? 'selected' : ''}}>Inactive</option>
+                                  <option value="1" {{$sla->valid_id == 1 ? 'selected' : ''}}>Active</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -122,32 +136,42 @@
 
                        <div class="form-group">
 
-                            <label for="exampleFormControlTextarea1">Admin notes</label>
+                            <label for="admin_note">Admin notes</label>
 
 
 
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea
+                            class="form-control"
+                             id="admin_note"
+                            name="admin_note"
+                            rows="3" >{{$sla->admin_note}}
+                           </textarea>
 
 
-                      </div>
+                       </div>
 
                         </div>
 
                     </div>
-
-
-
+                    <div class="row">
+                        <Button class="btn btn-primary" type="submit">
+                            Update
+                        </Button>
                     </div>
 
 
+
+
+
+
+
+                    </form>
 
 
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <Button class="btn btn-primary">
-                        Update
-                    </Button>
+
                 </div>
             </div>
             <!-- /.card -->

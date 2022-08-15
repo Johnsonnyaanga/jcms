@@ -114,7 +114,7 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="\sla\show" class="nav-link">
+                <a href="{{route('list-sla')}}" class="nav-link">
                     <i class="nav-icon fas fa-bars"></i>
                  <p>SLA</p>
                 </a>
@@ -123,7 +123,7 @@
 
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="\types\show" class="nav-link">
+                  <a href="{{route('list-ticket-types')}}" class="nav-link">
                     <i class="nav-icon fas fa-bars"></i>
                     <p>Ticket Types</p>
                   </a>
@@ -132,7 +132,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="\services\show" class="nav-link">
+                  <a href="{{route('list-services')}}" class="nav-link">
                     <i class="nav-icon fas fa-bars"></i>
                     <p>Ticket Services</p>
                   </a>
@@ -141,7 +141,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="\priority\show" class="nav-link">
+                  <a href="{{route('list-priorities')}}" class="nav-link">
                     <i class="nav-icon fas fa-bars"></i>
                     <p>
                         Priority
@@ -152,7 +152,7 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="\status\show" class="nav-link">
+                  <a href="{{route('list-statuses')}}" class="nav-link">
                     <i class="nav-icon fas fa-bars"></i>
                     <p>
                         Status

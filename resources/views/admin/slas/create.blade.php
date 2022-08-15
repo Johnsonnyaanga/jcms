@@ -47,6 +47,18 @@
 
     @section('content')
         <div class="container-fluid">
+            @if ($errors->any())
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert"  >
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+              </div>
+             @endif
+
+
 
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
@@ -64,6 +76,8 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    <form method="POST" action="{{route('store-sla')}}">
+                        @csrf
 
                     <div class="row">
 
@@ -72,7 +86,7 @@
                             <div class="form-group">
                                 {{-- first-name --}}
                                 <label>SLA name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="name" id="name" required>
                             </div>
                             <!-- /.form-group -->
 
@@ -82,12 +96,12 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Grace period</label>
-                                <select class="form-control select2" style="width: 100%;">
+                                <select class="form-control select2" style="width: 100%;" name="grace_period" id="grace_period">
                                   <option selected="selected">6 Hours</option>
-                                  <option>6 Hours</option>
-                                  <option>12 Hours</option>
-                                  <option>24 Hours</option>
-                                  <option>48 Hours</option>
+                                  <option value="6" >6 Hours</option>
+                                  <option value="12">12 Hours</option>
+                                  <option value="24" >24 Hours</option>
+                                  <option value="48">48 Hours</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -98,9 +112,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label> SLA Status</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Inactive</option>
-                                  <option>Active</option>
+                                <select class="form-control select2" style="width: 100%;" name="valid_id" id="valid_id">
+                                  <option value="0" selected="selected">Inactive</option>
+                                  <option value="1" >Active</option>
                                 </select>
                             </div>
                             <!-- /.form-group -->
@@ -126,7 +140,7 @@
 
 
 
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="admin_note" name="admin_note" rows="3" ></textarea>
 
 
                        </div>
@@ -135,16 +149,18 @@
 
                     </div>
                     <div class="row">
-                        <Button class="btn btn-primary">
+                        <Button class="btn btn-primary" type="submit">
                             Save
                         </Button>
                     </div>
 
 
 
-                    </div>
 
 
+
+
+                    </form>
 
 
                 </div>

@@ -53,7 +53,7 @@ class TicketConfigSeeder extends Seeder
 
          $ticketSla1 = SLA::create([
             'name' => 'sla1',
-            'grace_period' => '6 Hours',
+            'grace_period' => '6',
             'admin_note' => 'sla okay',
             'valid_id' => 1,
             'transient' => 1,
@@ -62,7 +62,7 @@ class TicketConfigSeeder extends Seeder
 
          $ticketSla2 = SLA::create([
             'name' => 'sla2',
-            'grace_period' => '12 Hours',
+            'grace_period' => '12',
             'admin_note' => 'sla okay',
             'valid_id' => 1,
             'transient' => 1,
