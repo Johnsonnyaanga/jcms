@@ -112,6 +112,17 @@
               </p>
             </a>
 
+
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="" class="nav-link">
+                      <i class="nav-icon fas fa-bars"></i>
+                   <p>Email</p>
+                  </a>
+                </li>
+              </ul>
+
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('list-sla')}}" class="nav-link">

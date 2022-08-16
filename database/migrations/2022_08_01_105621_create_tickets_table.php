@@ -22,6 +22,7 @@ class CreateTicketsTable extends Migration
             $table->integer('services_id');
             $table->integer('slas_id');
             $table->integer('users_id');
+            $table->integer('case_number');
             $table->integer('responsible_user_id');
             $table->integer('priorities_id');
             $table->integer('ticket_statuses_id');

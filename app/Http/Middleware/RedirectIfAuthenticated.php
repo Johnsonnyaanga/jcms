@@ -20,26 +20,32 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
+
+
+
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+
+
                 if(Auth::user()->hasRole('admin')){
-                    return '/admin_dashboard';
+                    return redirect('/admin_dashboard');
                    }
 
                    elseif(Auth::user()->hasRole('agent')){
-                    return '/agent_dashboard';
+                    return redirect('/agent_dashboard');
                    }
 
                    elseif(Auth::user()->hasRole(3)){
-                    return '/liasonperson_dashboard';
+                    return redirect('/liasonperson_dashboard');
                    }
 
                    elseif(Auth::user()->hasRole(4)){
-                    return '/client_dashboard';
+
+                    return redirect('/client_dashboard');
                    }
-                   
+
                    else{
-                    return '/home';
+                    return redirect('/home');
                    }
             }
         }
