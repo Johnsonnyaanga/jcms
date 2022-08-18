@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\TicketStatusController;
 use App\Http\Controllers\Admin\TicketTypesController;
 use App\Http\Controllers\Agent\DashboardController as AgentDashboardController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
+use App\Http\Controllers\Client\TicketController;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,20 @@ Route::group(['middleware' => ['auth']], function(){
         //update agent details
         Route::post('/admin/agents/{id}', [AgentsController::class, 'update'])->name('update-agent');
 
+        //admin dashboard
+        Route::get('/admin/dash', [DashboardController::class, 'index'])->name('admin-dash');
+
+
+        //admin ticket type
+        Route::get('/admin/ticket-type/edit/{id}', [TicketTypesController::class, 'edit'])->name('edit.ticket.type');
+
+        Route::post('/admin/ticket-type/{id}', [TicketTypesController::class, 'update'])->name('update.ticket.type');
+
+
+
+
+
+
 
 
 
@@ -75,6 +90,10 @@ Route::group(['middleware' => ['auth']], function(){
 
          //services routes
         Route::get('/admin/services', [TicketServicesController::class, 'index'])->name('list-services');
+        Route::get('/admin/services/{id}', [TicketServicesController::class, 'edit'])->name('services.edit');
+        Route::post('/admin/services/{id}', [TicketServicesController::class, 'update'])->name('services.update');
+
+
 
             //ticket-types routes
         Route::get('/admin/ticket-types', [TicketTypesController::class, 'index'])->name('list-ticket-types');
@@ -114,11 +133,7 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/admin_dashboard', [DashboardController::class, 'index']);
         //
-        Route::get('/admin/dashboard',function(){
-            // $role = Auth::user()->hasRole(1);
-            // dd($role);
-           return view('admin.dashboard');
-        });
+
 
 
 
@@ -191,7 +206,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 ->name('home');
 
+Route::get('/public/submit_complaint',[TicketController::class,'index'])
+->name('client.submit.complaint');
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 

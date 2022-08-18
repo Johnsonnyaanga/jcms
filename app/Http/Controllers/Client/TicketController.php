@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service;
-use App\Models\TicketType;
-use Error;
 use Illuminate\Http\Request;
 
-class TicketServicesController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class TicketServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        return view('admin.ticket-services.show',compact('services'));
+        return view('clients.submit_complaint');
     }
 
     /**
@@ -28,6 +24,7 @@ class TicketServicesController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -60,9 +57,7 @@ class TicketServicesController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::find($id);
-        $ticketTypes = TicketType::all();
-        return view('admin.ticket-services.edit',compact('service','ticketTypes'));
+        //
     }
 
     /**
@@ -74,33 +69,7 @@ class TicketServicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
-
-            $validated = $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'comment'=> ['required', 'string', 'max:255'],
-                'valid_id' => ['required', 'integer'],
-                'ticket-type' => ['required', 'integer']
-            ]);
-
-
-            $ticketService = Service::find($id);
-            $ticketService->name = $request['name'];
-            $ticketService->type_id = $request['ticket-type'];
-            $ticketService->comments = $request['comment'];
-            $ticketService->valid_id = $request['valid_id'];
-
-
-
-
-
-            $ticketService->save();
-
-            return redirect()->route('list-services')->with('success', 'Ticket Service updated succesifully');
-        }
-            catch(Error $error){
-                return redirect()->route('list-services')->with('fail', $error);
-            }
+        //
     }
 
     /**

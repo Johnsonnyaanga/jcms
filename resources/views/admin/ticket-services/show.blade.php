@@ -33,6 +33,23 @@
 @section('content')
 
 <div class="container-fluid">
+    @if(Session::has('success'))
+    <div class="alert alert-success alert-dismissable">
+        <i class="fas  fa-check-circle"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{Session::get('success')}}
+    </div>
+    @endif
+    <!-- failure message -->
+    @if(Session::has('fails'))
+    <div class="alert alert-danger alert-dismissable">
+        <i class="fas fa-ban"></i>
+        <b>{!! Lang::get('lang.fails') !!}!</b>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{Session::get('fails')}}
+    </div>
+    @endif
+
 
     <div class="row">
       <div class="col-12">
@@ -69,7 +86,9 @@
                     <td>{{$service->created_at}}</td>
 
                     <td>
+                        <a href="{{route('services.edit',$service->id)}}">
                         <button class="btn btn-primary">Edit</button>
+                        </a>
                     </td>
                   </tr>
                 @endforeach

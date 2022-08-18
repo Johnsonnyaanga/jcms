@@ -37,7 +37,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard v1</li>
+            <li class="breadcrumb-item active">Dashboard</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -45,9 +45,113 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
+        User Management
+    </div>
+    <div class="card-body">
+        <div class="row">
 
-        <p>dashboard man</p>
 
+            <div class="col-lg-3">
+                <a href="{{route('list-agents')}}">
+              Agents
+                </a>
+            </div>
+
+
+            <div class="col-lg-3">
+                <a href="{{route('list-queues')}}">
+              Queues
+                </a>
+            </div>
+
+
+            <div class="col-lg-3">
+                <a href="{{route('list-groups')}}">
+             Groups
+            </a>
+            </div>
+
+            <div class="col-lg-3">
+                <a href="{{route('list-roles')}}">
+             Roles
+            </a>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Ticket Management
+    </div>
+    <div class="card-body">
+        <div class="row">
+
+
+            <div class="col-lg-4">
+                <a href="{{route('list-priorities')}}">
+              Priority
+                </a>
+            </div>
+
+
+            <div class="col-lg-4">
+                <a href="{{route('list-statuses')}}">
+              Ticket status
+                </a>
+            </div>
+
+
+            <div class="col-lg-4">
+                <a href="{{route('admin-dash')}}">
+             Email
+            </a>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Tickets Management
+    </div>
+    <div class="card-body">
+        <div class="row">
+
+
+            <div class="col-lg-4">
+                <a href="{{route('list-sla')}}">
+              SLA
+                </a>
+            </div>
+
+
+            <div class="col-lg-4">
+                <a href="{{route('list-services')}}">
+              Services
+                </a>
+            </div>
+
+
+            <div class="col-lg-4">
+                <a href="{{route('list-ticket-types')}}">
+             Ticket Types
+            </a>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
 
 @endsection
 

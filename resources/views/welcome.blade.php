@@ -41,10 +41,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- Left navbar links -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="" class="nav-link">Home</a>
+                            <a href="{{route('index')}}" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Submit complaint</a>
+                            <a href="{{ route('client.submit.complaint') }}" class="nav-link">Submit complaint</a>
                         </li>
                        @guest
                        @if (Route::has('login'))
@@ -204,7 +204,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <div class="col-lg-3">
 
-
+                                <a href="{{ route('client.submit.complaint') }}">
                                 <div class="card card-primary card-outline " style="width: 15rem; height: 8rem;">
                                     <div class="card-body">
                                         <div class="col">
@@ -226,6 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                     </div>
                                 </div><!-- /.card -->
+                                </a>
                             </div>
 
 

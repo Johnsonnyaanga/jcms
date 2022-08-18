@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\TicketType;
+use Error;
 use Illuminate\Http\Request;
 
 class TicketTypesController extends Controller
@@ -59,7 +60,8 @@ class TicketTypesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ticketType = TicketType::find($id);
+        return view('admin.ticket-types.edit', compact('ticketType'));
     }
 
     /**
@@ -71,7 +73,31 @@ class TicketTypesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'valid_id' => ['required', 'integer']
+            ]);
+
+
+            $ticketType = TicketType::find($id);
+            $ticketType->name = $request['name'];
+            $ticketType->valid_id = $request['valid_id'];
+
+
+
+
+
+            $ticketType->save();
+
+            return redirect()->route('list-ticket-types')->with('success', 'Ticket Type updated succesifully');
+        }
+            catch(Error $error){
+                return redirect()->route('list-ticket-types')->with('fail', $error);
+            }
+
+
     }
 
     /**

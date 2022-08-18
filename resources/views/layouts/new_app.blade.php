@@ -1,3 +1,8 @@
+<?php
+$route_liveName = Request::route()->getName();
+?>
+
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -71,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
             <div class="container">
-                <a href="{{ asset('assets/index3.html') }}" class="navbar-brand">
+                <a href="{{ route('index')}}" class="navbar-brand">
                     <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                         class="brand-image img-circle elevation-3" style="opacity: .8">
                     <span class="brand-text font-weight-light">Judiciary Complaints Managament System</span>
@@ -87,16 +92,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- Left navbar links -->
                     <ul class="navbar-nav  ml-auto">
                         <li class="nav-item">
-                            <a href="" class="nav-link" >Home</a>
+                            <a href="{{route('index')}}" class="nav-link" >Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Submit complaint</a>
+                            <a href="{{ route('client.submit.complaint') }}" class="nav-link">Submit complaint</a>
                         </li>
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a href="{{ route('login') }}" class="nav-link">Login</a>
-                                </li>
+
+                            @if ($route_liveName=='login')
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}" class="nav-link">Register</a>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                <a href="{{ route('login') }}" class="nav-link">Login</a>
+                            </li>
+                            @endif
+
                             @endif
                         @else
 
